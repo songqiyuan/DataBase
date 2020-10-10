@@ -222,7 +222,7 @@ public:
 				}
 				if (bnode->left->color == BLACK && bnode->right->color == BLACK)
 				{
-					bnode->parent->color = RED;
+					bnode->color = RED;
 					node = node->parent;
 				}
 				else
@@ -255,7 +255,7 @@ public:
 				}
 				if (bnode->left->color == BLACK && bnode->right->color == BLACK)
 				{
-					bnode->parent->color = RED;
+					bnode->color = RED;
 					node = node->parent;
 				}
 				else
@@ -370,6 +370,7 @@ public:
 	//修正插入红黑性质
 	void RBInsertFixup(TreeNode* node)
 	{
+		//当前插入节点 ，其父节点为红色
 		while (node->parent != nullptr && node->parent->color == RED)
 		{
 			if (node->parent->parent->left == node->parent)
@@ -383,7 +384,7 @@ public:
 					node->parent->parent->color = RED;
 					node = node->parent->parent;
 				}
-				else// if(uncle != nullptr && uncle->color == BLACK)
+				else
 				{
 					if (node->parent->right == node)
 					{
@@ -405,7 +406,7 @@ public:
 					node->parent->parent->color = RED;
 					node = node->parent->parent;
 				}
-				else //if(uncle != nullptr && uncle->color == BLACK)
+				else 
 				{
 					if (node == node->parent->left)
 					{
